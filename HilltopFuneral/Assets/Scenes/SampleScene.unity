@@ -278,7 +278,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -556,6 +556,8 @@ MonoBehaviour:
   acceleration: 1
   foundCas: 0
   lift: 0
+  rigidbody: {fileID: 0}
+  walkSpeed: 6
 --- !u!1 &1290753838
 GameObject:
   m_ObjectHideFlags: 0
