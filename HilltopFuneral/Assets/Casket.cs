@@ -17,6 +17,10 @@ public class Casket : MonoBehaviour
 
     }
 
+    void FixedUpdate(){
+        
+    }
+
     void moveCasket(){
     }
 }
