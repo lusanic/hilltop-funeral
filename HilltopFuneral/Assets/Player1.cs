@@ -47,8 +47,8 @@ public class Player1 : MonoBehaviour
             GetComponent<Rigidbody>().drag = 5;
         }
 
-        float inputX = Input.GetAxis("Horizontal2");
-        float inputY = Input.GetAxis("Vertical2");
+        float inputX = Input.GetAxisRaw("Horizontal2");
+        float inputY = Input.GetAxisRaw("Vertical2");
 
         Vector3 moveDir = new Vector3(inputX, 0, inputY).normalized;
         Vector3 targetMoveAmount = moveDir * speed;
