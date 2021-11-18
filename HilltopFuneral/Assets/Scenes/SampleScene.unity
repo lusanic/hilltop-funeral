@@ -229,7 +229,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649832795}
   serializedVersion: 2
-  m_Mass: 5
+  m_Mass: 2.5
   m_Drag: 0
   m_AngularDrag: 0.03
   m_UseGravity: 1
@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceForward: 5
-  acceleration: 1
+  acceleration: 10
   foundCas: 0
   lift: 0
 --- !u!1 &1290753838
@@ -684,6 +684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forceForward: 3
   forceHorizontal: 2
+  acceleration: 10
   foundCas: 0
   lift: 0
   casket: {fileID: 0}

@@ -6,6 +6,7 @@ public class Player1 : MonoBehaviour
 {
     public float forceForward;
     public float forceHorizontal;
+    public float acceleration;
 
     public bool foundCas;
     public bool lift;
@@ -17,10 +18,11 @@ public class Player1 : MonoBehaviour
     {
         casket = GameObject.Find("Casket");
         player2 = GameObject.Find("Player2");
+        forceForward = acceleration * GetComponent<Rigidbody>().mass;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(foundCas){
             GetComponent<Rigidbody>().drag = 10;
@@ -36,6 +38,9 @@ public class Player1 : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(Vector3.forward * forceForward);
             if(lift && player2.GetComponent<Player2>().lift){
                 Vector3 relativePos = transform.position - casket.transform.position;
+                // Debug.Log(relativePos);
+                // var step = 0.5f * Time.deltaTime;
+                // casket.transform.rotation = Quaternion.RotateTowards(casket.transform.rotation, transform.rotation, step);
                 casket.GetComponent<Rigidbody>().AddForce(relativePos);
             }
 

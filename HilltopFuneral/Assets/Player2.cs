@@ -16,7 +16,7 @@ public class Player2 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(foundCas){
             GetComponent<Rigidbody>().drag = 10;
