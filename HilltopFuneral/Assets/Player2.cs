@@ -9,50 +9,90 @@ public class Player2 : MonoBehaviour
 
     public bool foundCas;
     public bool lift;
+
+
+    // Body
+    public Rigidbody rigidbody;
+
+    // Movement
+    Vector3 moveAmount;
+    Vector3 smoothMoveVelocity;
+    public float walkSpeed = 6;
+    private float speed;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         forceForward = acceleration * GetComponent<Rigidbody>().mass;
+        rigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Awake()
+    {
+        speed = walkSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(foundCas){
+
+        float inputX = Input.GetAxisRaw("Horizontal");
+        float inputY = Input.GetAxisRaw("Vertical");
+
+        Vector3 moveDir = new Vector3(inputX, 0, inputY).normalized;
+        Vector3 targetMoveAmount = moveDir * speed;
+        moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
+
+        // Check if on ground
+        Ray ray = new Ray(transform.position, -transform.up);
+        RaycastHit hit;
+
+
+
+        if (foundCas){
             GetComponent<Rigidbody>().drag = 10;
         }
         else{
             GetComponent<Rigidbody>().drag = 5;
         }
-        if (Input.GetKey(KeyCode.W)){
-            if(foundCas){
-                lift = true;
-            }
-            GetComponent<Rigidbody>().AddForce(Vector3.forward * forceForward);
+        //if (Input.GetKey(KeyCode.W)){
+        //    if(foundCas){
+        //        lift = true;
+        //    }
+        //    GetComponent<Rigidbody>().AddForce(Vector3.forward * forceForward);
 
-        }
+        //}
 
-        if (Input.GetKey(KeyCode.A)){
-            GetComponent<Rigidbody>().AddForce(Vector3.left * forceForward);
-        }
-        if (Input.GetKey(KeyCode.S)){
-            GetComponent<Rigidbody>().AddForce(-Vector3.forward * forceForward);
-        }
-        if (Input.GetKey(KeyCode.D)){
-            GetComponent<Rigidbody>().AddForce(Vector3.right * forceForward);
-        }
-        if(Input.GetKeyUp(KeyCode.W)){
-            lift = false;
-        }
+        //if (Input.GetKey(KeyCode.A)){
+        //    GetComponent<Rigidbody>().AddForce(Vector3.left * forceForward);
+        //}
+        //if (Input.GetKey(KeyCode.S)){
+        //    GetComponent<Rigidbody>().AddForce(-Vector3.forward * forceForward);
+        //}
+        //if (Input.GetKey(KeyCode.D)){
+        //    GetComponent<Rigidbody>().AddForce(Vector3.right * forceForward);
+        //}
+        //if(Input.GetKeyUp(KeyCode.W)){
+        //    lift = false;
+        //}
 
 
     }
 
-    void OnCollisionEnter(Collision coll){
-        if (coll.gameObject.name == "Casket"){
-            foundCas = true;
-        }
+    private void FixedUpdate()
+    {
+        Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
+        rigidbody.MovePosition(rigidbody.position + localMove);
     }
+
+    //void OnCollisionEnter(Collision coll){
+    //    if (coll.gameObject.name == "Casket"){
+    //        foundCas = true;
+    //    }
+    //}
 
     // void OnCollisionExit(Collision coll){
     //     if (coll.gameObject.name == "Casket"){
@@ -60,16 +100,16 @@ public class Player2 : MonoBehaviour
     //     }
     // }
 
-    void OnTriggerEnter(Collider coll){
-        if (coll.gameObject.tag == "Casket"){
-            Debug.Log("found casket");
-            foundCas = true;
-        }
-    }
+    //void OnTriggerEnter(Collider coll){
+    //    if (coll.gameObject.tag == "Casket"){
+    //        Debug.Log("found casket");
+    //        foundCas = true;
+    //    }
+    //}
 
-    void OnTriggerExit(Collider coll){
-        if (coll.gameObject.tag == "Casket"){
-            foundCas = false;
-        }
-    }
+    //void OnTriggerExit(Collider coll){
+    //    if (coll.gameObject.tag == "Casket"){
+    //        foundCas = false;
+    //    }
+    //}
 }
