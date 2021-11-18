@@ -4,30 +4,32 @@ using UnityEngine;
 
 public class Player2 : MonoBehaviour
 {
-    public float forceForward = 10.0f;
+    public float forceForward;
+    public float acceleration;
 
     public bool foundCas;
     public bool lift;
     // Start is called before the first frame update
     void Start()
     {
-        
+        forceForward = acceleration * GetComponent<Rigidbody>().mass;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(foundCas){
-            GetComponent<Rigidbody>().drag = 15;
+            GetComponent<Rigidbody>().drag = 10;
         }
         else{
-            GetComponent<Rigidbody>().drag = 0;
+            GetComponent<Rigidbody>().drag = 5;
         }
         if (Input.GetKey(KeyCode.W)){
-            GetComponent<Rigidbody>().AddForce(Vector3.forward * forceForward);
             if(foundCas){
                 lift = true;
             }
+            GetComponent<Rigidbody>().AddForce(Vector3.forward * forceForward);
+
         }
 
         if (Input.GetKey(KeyCode.A)){
@@ -39,7 +41,7 @@ public class Player2 : MonoBehaviour
         if (Input.GetKey(KeyCode.D)){
             GetComponent<Rigidbody>().AddForce(Vector3.right * forceForward);
         }
-        if(Input.GetKeyUp(KeyCode.UpArrow)){
+        if(Input.GetKeyUp(KeyCode.W)){
             lift = false;
         }
 
@@ -52,8 +54,21 @@ public class Player2 : MonoBehaviour
         }
     }
 
-    void OnCollisionExit(Collision coll){
-        if (coll.gameObject.name == "Casket"){
+    // void OnCollisionExit(Collision coll){
+    //     if (coll.gameObject.name == "Casket"){
+    //         foundCas = false;
+    //     }
+    // }
+
+    void OnTriggerEnter(Collider coll){
+        if (coll.gameObject.tag == "Casket"){
+            Debug.Log("found casket");
+            foundCas = true;
+        }
+    }
+
+    void OnTriggerExit(Collider coll){
+        if (coll.gameObject.tag == "Casket"){
             foundCas = false;
         }
     }

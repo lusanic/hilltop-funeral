@@ -26,7 +26,7 @@ public class Player1 : MonoBehaviour
             GetComponent<Rigidbody>().drag = 10;
         }
         else{
-            GetComponent<Rigidbody>().drag = 0;
+            GetComponent<Rigidbody>().drag = 5;
         }
 
         if (Input.GetKey(KeyCode.UpArrow)){
@@ -36,7 +36,7 @@ public class Player1 : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(Vector3.forward * forceForward);
             if(lift && player2.GetComponent<Player2>().lift){
                 Vector3 relativePos = transform.position - casket.transform.position;
-                casket.GetComponent<Rigidbody>().AddForce(relativePos/2);
+                casket.GetComponent<Rigidbody>().AddForce(relativePos);
             }
 
         }
@@ -57,7 +57,7 @@ public class Player1 : MonoBehaviour
             }
         }
         if (Input.GetKey(KeyCode.DownArrow)){
-            GetComponent<Rigidbody>().AddForce(-Vector3.forward * forceHorizontal);
+            GetComponent<Rigidbody>().AddForce(-Vector3.forward * forceForward);
         }
 
         if(Input.GetKeyUp(KeyCode.UpArrow)){
@@ -74,8 +74,20 @@ public class Player1 : MonoBehaviour
         }
     }
 
-    void OnCollisionExit(Collision coll){
-        if (coll.gameObject.name == "Casket"){
+    // void OnCollisionExit(Collision coll){
+    //     if (coll.gameObject.name == "Casket"){
+    //         foundCas = false;
+    //     }
+    // }
+
+    void OnTriggerEnter(Collider coll){
+        if (coll.gameObject.tag == "Casket"){
+            foundCas = true;
+        }
+    }
+
+    void OnTriggerExit(Collider coll){
+        if (coll.gameObject.tag == "Casket"){
             foundCas = false;
         }
     }
