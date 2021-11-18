@@ -58,26 +58,6 @@ public class Player2 : MonoBehaviour
         else{
             GetComponent<Rigidbody>().drag = 5;
         }
-        //if (Input.GetKey(KeyCode.W)){
-        //    if(foundCas){
-        //        lift = true;
-        //    }
-        //    GetComponent<Rigidbody>().AddForce(Vector3.forward * forceForward);
-
-        //}
-
-        //if (Input.GetKey(KeyCode.A)){
-        //    GetComponent<Rigidbody>().AddForce(Vector3.left * forceForward);
-        //}
-        //if (Input.GetKey(KeyCode.S)){
-        //    GetComponent<Rigidbody>().AddForce(-Vector3.forward * forceForward);
-        //}
-        //if (Input.GetKey(KeyCode.D)){
-        //    GetComponent<Rigidbody>().AddForce(Vector3.right * forceForward);
-        //}
-        //if(Input.GetKeyUp(KeyCode.W)){
-        //    lift = false;
-        //}
 
 
     }
