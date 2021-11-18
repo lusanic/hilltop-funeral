@@ -400,7 +400,7 @@ FodyWeavers.xsd
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
-/ProjectSettings/InputManager.asset
+#/ProjectSettings/InputManager.asset
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
