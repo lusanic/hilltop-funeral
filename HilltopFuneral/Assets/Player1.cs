@@ -27,20 +27,19 @@ public class Player1 : MonoBehaviour
     // Start is called before the first frame update
   
 
-    //Pull
-    public float pullForce = -5f;
+
 
     void Start()
     {
-        casket = GameObject.Find("Casket");
-        player2 = GameObject.Find("Player2");
-
-        casketBody = casket.GetComponent<Rigidbody>();
         rigidbody = GetComponent<Rigidbody>();
+        casketBody = casket.GetComponent<Rigidbody>();
     }
     
     private void Awake()
     {
+        casket = GameObject.FindGameObjectWithTag("Casket");
+        player2 = GameObject.Find("Player2");
+
         speed = walkSpeed;
     }
 
@@ -102,12 +101,12 @@ public class Player1 : MonoBehaviour
         //}
 
 
-        if (foundCas){
-            GetComponent<Rigidbody>().drag = 10;
-        }
-        else{
-            GetComponent<Rigidbody>().drag = 5;
-        }
+        //if (foundCas){
+        //    GetComponent<Rigidbody>().drag = 10;
+        //}
+        //else{
+        //    GetComponent<Rigidbody>().drag = 5;
+        //}
 
         // if (Input.GetKey(KeyCode.UpArrow)){
         //     if(foundCas){
@@ -143,20 +142,15 @@ public class Player1 : MonoBehaviour
         // if(Input.GetKeyUp(KeyCode.UpArrow)){
         //     lift = false;
         // }
-
     }
 
-
-    public void AttractCasket()
+    private void FixedUpdate()
     {
-        Vector3 vectorTo = (casketBody.position - transform.position).normalized;
-        float casketDist = Vector3.Distance(casketBody.position, transform.position);
-
-        if (Mathf.Abs(casketDist) < 5)
-        {
-            casketBody.AddForce(vectorTo * pullForce);
-        }
+        Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
+        rigidbody.MovePosition(rigidbody.position + localMove);
+        casket.GetComponent<Casket>().AttractCasket(rigidbody);
     }
+
 
     //void OnCollisionExit(Collision coll)
     //{

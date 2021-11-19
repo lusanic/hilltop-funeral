@@ -52,12 +52,12 @@ public class Player2 : MonoBehaviour
 
 
 
-        if (foundCas){
-            GetComponent<Rigidbody>().drag = 10;
-        }
-        else{
-            GetComponent<Rigidbody>().drag = 5;
-        }
+        //if (foundCas){
+        //    GetComponent<Rigidbody>().drag = 10;
+        //}
+        //else{
+        //    GetComponent<Rigidbody>().drag = 5;
+        //}
 
 
     }
