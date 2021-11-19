@@ -20,8 +20,6 @@ public class Casket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
     }
 
 
@@ -34,10 +32,10 @@ public class Casket : MonoBehaviour
     {
         Vector3 vectorTo = (rigidbody.position - player.position).normalized;
         float casketDist = Vector3.Distance(rigidbody.position, player.position);
-        rigidbody.rotation = Quaternion.FromToRotation(rigidbody.transform.forward, vectorTo) * rigidbody.rotation;
 
         if (Mathf.Abs(casketDist) < 7)
         {
+            rigidbody.rotation = Quaternion.FromToRotation(rigidbody.transform.forward, vectorTo) * rigidbody.rotation;
             rigidbody.AddForce(-vectorTo * (casketDist * 4));
         }
     }
