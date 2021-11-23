@@ -13,17 +13,19 @@ public class Player2 : MonoBehaviour
     void Start()
     {
         forceForward = acceleration * GetComponent<Rigidbody>().mass;
+        setRigidbodyState(true);
+        setColliderState(false);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(foundCas){
-            GetComponent<Rigidbody>().drag = 10;
-        }
-        else{
-            GetComponent<Rigidbody>().drag = 5;
-        }
+        // if(foundCas){
+        //     GetComponent<Rigidbody>().drag = 10;
+        // }
+        // else{
+        //     GetComponent<Rigidbody>().drag = 5;
+        // }
         if (Input.GetKey(KeyCode.W)){
             if(foundCas){
                 lift = true;
@@ -71,5 +73,21 @@ public class Player2 : MonoBehaviour
         if (coll.gameObject.tag == "Casket"){
             foundCas = false;
         }
+    }
+
+    void setRigidbodyState(bool state){
+        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody rb in rigidbodies){
+            rb.isKinematic = state;
+        }
+        GetComponent<Rigidbody>().isKinematic = !state;
+    }
+
+    void setColliderState(bool state){
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        foreach (Collider coll in colliders){
+            coll.enabled = state;
+        }
+        GetComponent<Collider>().enabled = !state;
     }
 }

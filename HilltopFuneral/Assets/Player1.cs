@@ -24,12 +24,12 @@ public class Player1 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(foundCas){
-            GetComponent<Rigidbody>().drag = 10;
-        }
-        else{
-            GetComponent<Rigidbody>().drag = 5;
-        }
+        // if(foundCas){
+        //     GetComponent<Rigidbody>().drag = 10;
+        // }
+        // else{
+        //     GetComponent<Rigidbody>().drag = 5;
+        // }
 
         if (Input.GetKey(KeyCode.UpArrow)){
             if(foundCas){
