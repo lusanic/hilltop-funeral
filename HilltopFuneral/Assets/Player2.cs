@@ -30,7 +30,7 @@ public class Player2 : MonoBehaviour
         //forceForward = acceleration * GetComponent<Rigidbody>().mass;
         //rigidbody = GetComponent<Rigidbody>();
         setRigidbodyState(true);
-        setColliderState(false);
+        //setColliderState(false);
     }
 
     private void Awake()
