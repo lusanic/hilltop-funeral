@@ -17,8 +17,7 @@ public class Player1 : MonoBehaviour
     void Start()
     {
         casket = GameObject.Find("Casket");
-        player2 = GameObject.Find("Player2");
-        forceForward = acceleration * GetComponent<Rigidbody>().mass;
+        //forceForward = acceleration * GetComponent<Rigidbody>().mass;
     }
 
     // Update is called once per frame
@@ -35,10 +34,10 @@ public class Player1 : MonoBehaviour
             if(foundCas){
                 lift = true;
             }
-            GetComponent<Rigidbody>().AddForce(Vector3.forward * forceForward);
+            GetComponent<Rigidbody>().AddForce(Vector3.right * forceForward);
             if(lift && player2.GetComponent<Player2>().lift){
                 Vector3 relativePos = transform.position - casket.transform.position;
-                // Debug.Log(relativePos);
+                 Debug.Log(relativePos);
                 // var step = 0.5f * Time.deltaTime;
                 // casket.transform.rotation = Quaternion.RotateTowards(casket.transform.rotation, transform.rotation, step);
                 casket.GetComponent<Rigidbody>().AddForce(relativePos);
@@ -48,21 +47,21 @@ public class Player1 : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow)){
 
-            GetComponent<Rigidbody>().AddForce(Vector3.left * forceHorizontal);
+            GetComponent<Rigidbody>().AddForce(Vector3.forward * forceForward);
             if(lift && player2.GetComponent<Player2>().lift){
                 Vector3 relativePos = transform.position - casket.transform.position;
                 casket.GetComponent<Rigidbody>().AddForce(relativePos/2);
             }
         }
         if (Input.GetKey(KeyCode.RightArrow)){
-            GetComponent<Rigidbody>().AddForce(Vector3.right * forceHorizontal);
+            GetComponent<Rigidbody>().AddForce(-Vector3.forward * forceForward);
             if(lift && player2.GetComponent<Player2>().lift){
                 Vector3 relativePos = transform.position - casket.transform.position;
                 casket.GetComponent<Rigidbody>().AddForce(relativePos/2);
             }
         }
         if (Input.GetKey(KeyCode.DownArrow)){
-            GetComponent<Rigidbody>().AddForce(-Vector3.forward * forceForward);
+            GetComponent<Rigidbody>().AddForce(Vector3.left * forceForward);
         }
 
         if(Input.GetKeyUp(KeyCode.UpArrow)){

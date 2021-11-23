@@ -12,7 +12,7 @@ public class Player2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        forceForward = acceleration * GetComponent<Rigidbody>().mass;
+        //forceForward = acceleration * GetComponent<Rigidbody>().mass;
         setRigidbodyState(true);
         setColliderState(false);
     }
@@ -27,24 +27,30 @@ public class Player2 : MonoBehaviour
         //     GetComponent<Rigidbody>().drag = 5;
         // }
         if (Input.GetKey(KeyCode.W)){
+            GetComponent<Animator>().enabled = true;
             if(foundCas){
                 lift = true;
             }
-            GetComponent<Rigidbody>().AddForce(Vector3.forward * forceForward);
+            GetComponent<Rigidbody>().AddForce(Vector3.right * forceForward);
 
         }
 
         if (Input.GetKey(KeyCode.A)){
-            GetComponent<Rigidbody>().AddForce(Vector3.left * forceForward);
+            GetComponent<Rigidbody>().AddForce(Vector3.forward * forceForward);
         }
         if (Input.GetKey(KeyCode.S)){
-            GetComponent<Rigidbody>().AddForce(-Vector3.forward * forceForward);
+            GetComponent<Rigidbody>().AddForce(Vector3.left * forceForward);
         }
         if (Input.GetKey(KeyCode.D)){
-            GetComponent<Rigidbody>().AddForce(Vector3.right * forceForward);
+            GetComponent<Rigidbody>().AddForce(-Vector3.forward * forceForward);
         }
         if(Input.GetKeyUp(KeyCode.W)){
             lift = false;
+
+        }
+
+        if(!lift){
+            GetComponent<Animator>().enabled = false;
         }
 
 
@@ -59,6 +65,7 @@ public class Player2 : MonoBehaviour
     // void OnCollisionExit(Collision coll){
     //     if (coll.gameObject.name == "Casket"){
     //         foundCas = false;
+    //         lift = false;
     //     }
     // }
 
@@ -72,6 +79,7 @@ public class Player2 : MonoBehaviour
     void OnTriggerExit(Collider coll){
         if (coll.gameObject.tag == "Casket"){
             foundCas = false;
+            lift = false;
         }
     }
 
