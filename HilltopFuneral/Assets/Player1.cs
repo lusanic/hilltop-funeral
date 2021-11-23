@@ -33,12 +33,12 @@ public class Player1 : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         casketBody = casket.GetComponent<Rigidbody>();
+        
     }
     
     private void Awake()
     {
         casket = GameObject.FindGameObjectWithTag("Casket");
-        player2 = GameObject.Find("Player2");
 
         speed = walkSpeed;
     }
@@ -152,7 +152,7 @@ public class Player1 : MonoBehaviour
     {
         Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
         rigidbody.MovePosition(rigidbody.position + localMove);
-        if(lift){
+        if(lift && player2.GetComponent<Player2>().lift){
             casket.GetComponent<Casket>().AttractCasket(rigidbody);
         }
 

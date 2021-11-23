@@ -26,8 +26,9 @@ public class Player2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        forceForward = acceleration * GetComponent<Rigidbody>().mass;
         rigidbody = GetComponent<Rigidbody>();
+        //forceForward = acceleration * GetComponent<Rigidbody>().mass;
+        //rigidbody = GetComponent<Rigidbody>();
         setRigidbodyState(true);
         setColliderState(false);
     }
@@ -41,33 +42,39 @@ public class Player2 : MonoBehaviour
     void Update()
     {
 
+        if(Input.GetKeyDown(KeyCode.UpArrow)){
+           lift = true;
+           GetComponent<Animator>().enabled = true;
+        }
+
+        if(Input.GetKeyUp(KeyCode.UpArrow)){
+           lift = false;
+           GetComponent<Animator>().enabled = false;
+        }
+
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
 
-        Vector3 moveDir = new Vector3(inputX, 0, inputY).normalized;
-        Vector3 targetMoveAmount = moveDir * speed;
-        moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
+        if(lift){
+            Vector3 moveDir = new Vector3(inputX, 0, inputY).normalized;
+            Vector3 targetMoveAmount = moveDir * speed;
+            moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
+        }
+
 
         // Check if on ground
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
-
-
-        //if (foundCas){
-        //    GetComponent<Rigidbody>().drag = 10;
-        //}
-        //else{
-        //    GetComponent<Rigidbody>().drag = 5;
-        //}
-
-
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
-        rigidbody.MovePosition(rigidbody.position + localMove);
+        if(lift){
+            Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
+            rigidbody.MovePosition(rigidbody.position + localMove);
+        }
+
     }
 
     void setRigidbodyState(bool state){
