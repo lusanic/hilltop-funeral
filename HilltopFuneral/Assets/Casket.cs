@@ -33,7 +33,7 @@ public class Casket : MonoBehaviour
         Vector3 vectorTo = (rigidbody.position - player.position).normalized;
         float casketDist = Vector3.Distance(rigidbody.position, player.position);
 
-        if (Mathf.Abs(casketDist) < 7)
+        if (Mathf.Abs(casketDist) < 5)
         {
             rigidbody.rotation = Quaternion.FromToRotation(rigidbody.transform.forward, vectorTo) * rigidbody.rotation;
             rigidbody.AddForce(-vectorTo * (casketDist * 4));

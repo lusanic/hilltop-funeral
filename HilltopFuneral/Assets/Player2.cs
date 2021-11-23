@@ -28,6 +28,8 @@ public class Player2 : MonoBehaviour
     {
         forceForward = acceleration * GetComponent<Rigidbody>().mass;
         rigidbody = GetComponent<Rigidbody>();
+        setRigidbodyState(true);
+        setColliderState(false);
     }
 
     private void Awake()
@@ -68,28 +70,25 @@ public class Player2 : MonoBehaviour
         rigidbody.MovePosition(rigidbody.position + localMove);
     }
 
-    //void OnCollisionEnter(Collision coll){
-    //    if (coll.gameObject.name == "Casket"){
-    //        foundCas = true;
-    //    }
-    //}
+    void setRigidbodyState(bool state){
+        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
 
-    // void OnCollisionExit(Collision coll){
-    //     if (coll.gameObject.name == "Casket"){
-    //         foundCas = false;
-    //     }
-    // }
+        foreach (Rigidbody rb in rigidbodies){
+            rb.isKinematic = state;
+        }
 
-    //void OnTriggerEnter(Collider coll){
-    //    if (coll.gameObject.tag == "Casket"){
-    //        Debug.Log("found casket");
-    //        foundCas = true;
-    //    }
-    //}
+        GetComponent<Rigidbody>().isKinematic = !state;
+    }
 
-    //void OnTriggerExit(Collider coll){
-    //    if (coll.gameObject.tag == "Casket"){
-    //        foundCas = false;
-    //    }
-    //}
+    void setColliderState(bool state){
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+
+        foreach (Collider coll in colliders){
+            GetComponent<Collider>().enabled = state;
+        }
+
+        GetComponent<Collider>().enabled = !state;
+    }
+
+
 }

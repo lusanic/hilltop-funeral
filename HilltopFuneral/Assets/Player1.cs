@@ -96,9 +96,13 @@ public class Player1 : MonoBehaviour
         //    GetComponent<Rigidbody>().AddForce(-Vector3.forward * forceForward);
         //}
 
-        //if(Input.GetKeyUp(KeyCode.UpArrow)){
-        //    lift = false;
-        //}
+        if(Input.GetKeyDown(KeyCode.W)){
+           lift = true;
+        }
+
+        if(Input.GetKeyUp(KeyCode.W)){
+           lift = false;
+        }
 
 
         //if (foundCas){
@@ -148,7 +152,10 @@ public class Player1 : MonoBehaviour
     {
         Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
         rigidbody.MovePosition(rigidbody.position + localMove);
-        casket.GetComponent<Casket>().AttractCasket(rigidbody);
+        if(lift){
+            casket.GetComponent<Casket>().AttractCasket(rigidbody);
+        }
+
     }
 
 
