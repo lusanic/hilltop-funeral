@@ -42,13 +42,11 @@ public class Anchor : MonoBehaviour
         speed = walkSpeed;
     }
 
-
     // Update is called once per frame
     void Update()
     {
-        //transform.position = anchorrigidbody.position;
-    }
 
+    }
 
     void FixedUpdate()
     {

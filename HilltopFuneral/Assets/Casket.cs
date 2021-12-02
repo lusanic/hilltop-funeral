@@ -65,7 +65,12 @@ public class Casket : MonoBehaviour
 
     }
 
-    public void AttractCasket(Rigidbody player)
+    public void BlowCasket(Vector3 direction, float speed)
+    {
+        rigidbody.AddTorque(direction * speed);
+    }
+
+        public void AttractCasket(Rigidbody player)
     {
         Vector3 above = GetBehindPosition(player.transform, 0, 1.5f);
 
