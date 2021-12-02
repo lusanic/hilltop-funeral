@@ -61,8 +61,7 @@ public class Casket : MonoBehaviour
         player2.GetComponent<Player2>().AttractPlayer2(rigidbody);
         Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
         rigidbody.AddTorque(transform.forward * torqueX * turnX);
-
-        rigidbody.AddTorque(transform.right * torqueY * turnY);
+        rigidbody.AddTorque(-transform.right * torqueY * turnY);
 
     }
 
@@ -74,8 +73,8 @@ public class Casket : MonoBehaviour
         float casketDist = Vector3.Distance(rigidbody.position, above);
 
 
-         Quaternion h = Quaternion.FromToRotation(rigidbody.transform.forward, vectorTo) * rigidbody.rotation;
-         rigidbody.rotation = Quaternion.RotateTowards(rigidbody.rotation, h, 5f);
+        Quaternion h = Quaternion.FromToRotation(rigidbody.transform.forward, vectorTo) * rigidbody.rotation;
+        rigidbody.rotation = Quaternion.RotateTowards(rigidbody.rotation, h, 5f);
     }
 
     public Vector3 GetBehindPosition(Transform target, float distanceBehind, float distanceAbove)
