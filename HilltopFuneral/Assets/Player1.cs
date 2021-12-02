@@ -12,6 +12,7 @@ public class Player1 : MonoBehaviour
 
     public GameObject casket;
     public GameObject player2;
+    public GameObject anchor;
 
 
     // Body
@@ -38,8 +39,7 @@ public class Player1 : MonoBehaviour
     private void Awake()
     {
         casket = GameObject.FindGameObjectWithTag("Casket");
-        player2 = GameObject.Find("Player2");
-
+        anchor = GameObject.FindGameObjectWithTag("Anchor");
         speed = walkSpeed;
     }
 
@@ -149,6 +149,7 @@ public class Player1 : MonoBehaviour
         Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
         rigidbody.MovePosition(rigidbody.position + localMove);
         casket.GetComponent<Casket>().AttractCasket(rigidbody);
+        anchor.GetComponent<Anchor>().AttractAnchor(rigidbody);
     }
 
 
