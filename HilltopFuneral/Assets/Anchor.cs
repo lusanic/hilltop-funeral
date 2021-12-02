@@ -58,7 +58,7 @@ public class Anchor : MonoBehaviour
     public void AttractAnchor(Rigidbody player)
     {
         Vector3 pos = anchorrigidbody.transform.position;
-        anchorrigidbody.position = Vector3.MoveTowards(anchorrigidbody.position, player.transform.TransformPoint(0, 5, -5), pullForce * Time.deltaTime);
+        anchorrigidbody.position = Vector3.MoveTowards(anchorrigidbody.position, player.transform.TransformPoint(0, 0.5f, -0.5f), pullForce * Time.deltaTime);
        
     }
 
