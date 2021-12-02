@@ -68,7 +68,12 @@ public class Player1 : MonoBehaviour
         casket.GetComponent<Casket>().AttractCasket(rigidbody);
         anchor.GetComponent<Anchor>().AttractAnchor(rigidbody);
 
+
         Quaternion h = Quaternion.FromToRotation(rigidbody.transform.forward, localMove) * rigidbody.rotation;
+        Vector3 direction = h.eulerAngles;
+        h.x = 0;
+        h.z = 0;
+
         rigidbody.rotation = Quaternion.RotateTowards(rigidbody.rotation, h, 0.3f);
     }
 

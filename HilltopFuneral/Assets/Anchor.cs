@@ -5,7 +5,7 @@ using UnityEngine;
 public class Anchor : MonoBehaviour
 {
 
-    public Rigidbody rigidbody;
+    public Rigidbody anchorrigidbody;
     public GameObject player2;
 
     // Movement
@@ -34,8 +34,8 @@ public class Anchor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
-        rigidbody.centerOfMass = com;
+        anchorrigidbody = GetComponent<Rigidbody>();
+        anchorrigidbody.centerOfMass = com;
     }
     private void Awake()
     {
@@ -46,7 +46,7 @@ public class Anchor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //transform.position = anchorrigidbody.position;
     }
 
 
@@ -57,8 +57,9 @@ public class Anchor : MonoBehaviour
 
     public void AttractAnchor(Rigidbody player)
     {
-        Vector3 pos = rigidbody.transform.position;
-        rigidbody.position = Vector3.MoveTowards(rigidbody.position, player.transform.TransformPoint(0, 5, -5), pullForce * Time.deltaTime);
+        Vector3 pos = anchorrigidbody.transform.position;
+        anchorrigidbody.position = Vector3.MoveTowards(anchorrigidbody.position, player.transform.TransformPoint(0, 5, -5), pullForce * Time.deltaTime);
+       
     }
 
     public Vector3 GetBehindPosition(Transform target, float distanceBehind, float distanceAbove)

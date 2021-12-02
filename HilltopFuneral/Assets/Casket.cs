@@ -72,9 +72,13 @@ public class Casket : MonoBehaviour
         Vector3 vectorTo = (rigidbody.position - above).normalized;
         float casketDist = Vector3.Distance(rigidbody.position, above);
 
+        Vector3 zeroX = rigidbody.rotation * Vector3.zero;
 
         Quaternion h = Quaternion.FromToRotation(rigidbody.transform.forward, vectorTo) * rigidbody.rotation;
-        rigidbody.rotation = Quaternion.RotateTowards(rigidbody.rotation, h, 5f);
+        Vector3 direction = h.eulerAngles;
+        h.x = 0;
+        h.z = 0;
+        rigidbody.rotation = Quaternion.RotateTowards(rigidbody.rotation, h, 10f);
     }
 
     public Vector3 GetBehindPosition(Transform target, float distanceBehind, float distanceAbove)
