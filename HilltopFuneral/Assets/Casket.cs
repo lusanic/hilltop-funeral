@@ -7,6 +7,7 @@ public class Casket : MonoBehaviour
 
     public Rigidbody rigidbody;
     public GameObject player2;
+    public GameObject terrain;
 
     // Movement
     Vector3 moveAmount;
@@ -53,6 +54,12 @@ public class Casket : MonoBehaviour
         Vector3 moveDir = new Vector3(turnX, 0, turnY).normalized;
         Vector3 targetMoveAmount = moveDir * speed;
         moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
+
+        // RaycastHit hit;
+        // var ray = new Ray (transform.position, Vector3.down); // check for slopes
+        // if (terrain.GetComponent<Collider>().Raycast(ray, out hit, 1000)) {
+        //     transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal)*transform.rotation; // adjust for slopes
+        // }
     }
 
 
@@ -78,7 +85,7 @@ public class Casket : MonoBehaviour
         Vector3 direction = h.eulerAngles;
         h.x = 0;
         h.z = 0;
-        rigidbody.rotation = Quaternion.RotateTowards(rigidbody.rotation, h, 10f);
+        rigidbody.rotation = Quaternion.RotateTowards(rigidbody.rotation, h, 30f);
     }
 
     public Vector3 GetBehindPosition(Transform target, float distanceBehind, float distanceAbove)

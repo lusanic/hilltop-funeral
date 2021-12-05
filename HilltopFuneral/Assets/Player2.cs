@@ -21,7 +21,7 @@ public class Player2 : MonoBehaviour
 
     private void Awake()
     {
-        thisrigidbody = GetComponent<Rigidbody>();
+        //thisrigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -32,12 +32,20 @@ public class Player2 : MonoBehaviour
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
+        
+
     }
 
     public void AttractPlayer2(Rigidbody casket)
     {
-        Vector3 pos = thisrigidbody.transform.position;
+        Vector3 pos = transform.position;
         transform.position = Vector3.MoveTowards(pos, casket.transform.TransformPoint(0, -2f, 0.7f), pullForce * Time.deltaTime);
+
+
+
+        Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, casket.transform.eulerAngles.y-178.0f, transform.eulerAngles.z);
+ 
+        transform.rotation = Quaternion.Euler(eulerRotation);
     }
 
 
