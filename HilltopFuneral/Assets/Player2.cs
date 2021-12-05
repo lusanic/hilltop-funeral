@@ -4,68 +4,54 @@ using UnityEngine;
 
 public class Player2 : MonoBehaviour
 {
-    public float forceForward;
-    public float acceleration;
 
     public bool foundCas;
     public bool lift;
 
+    public float pullForce = 10.0f;
 
     // Body
-    public Rigidbody rigidbody;
-
-    // Movement
-    Vector3 moveAmount;
-    Vector3 smoothMoveVelocity;
-    public float walkSpeed = 6;
-    private float speed;
-
-
-
+    public Rigidbody thisrigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
-        forceForward = acceleration * GetComponent<Rigidbody>().mass;
-        rigidbody = GetComponent<Rigidbody>();
+        //forceForward = acceleration * GetComponent<Rigidbody>().mass; 
     }
 
     private void Awake()
     {
-        speed = walkSpeed;
+        //thisrigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        float inputX = Input.GetAxisRaw("Horizontal");
-        float inputY = Input.GetAxisRaw("Vertical");
-
-        Vector3 moveDir = new Vector3(inputX, 0, inputY).normalized;
-        Vector3 targetMoveAmount = moveDir * speed;
-        moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
-
         // Check if on ground
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
-
-
-        if (foundCas){
-            GetComponent<Rigidbody>().drag = 10;
-        }
-        else{
-            GetComponent<Rigidbody>().drag = 5;
-        }
-
+        
 
     }
 
+    public void AttractPlayer2(Rigidbody casket)
+    {
+        Vector3 pos = transform.position;
+        transform.position = Vector3.MoveTowards(pos, casket.transform.TransformPoint(0, -2f, 0.7f), pullForce * Time.deltaTime);
+
+
+
+        Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, casket.transform.eulerAngles.y-178.0f, transform.eulerAngles.z);
+ 
+        transform.rotation = Quaternion.Euler(eulerRotation);
+    }
+
+
     private void FixedUpdate()
     {
-        Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
-        rigidbody.MovePosition(rigidbody.position + localMove);
+       
     }
 
     //void OnCollisionEnter(Collision coll){

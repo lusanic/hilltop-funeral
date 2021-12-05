@@ -12,6 +12,7 @@ public class Player1 : MonoBehaviour
 
     public GameObject casket;
     public GameObject player2;
+    public GameObject anchor;
 
 
     // Body
@@ -26,21 +27,19 @@ public class Player1 : MonoBehaviour
 
     // Start is called before the first frame update
   
+    private Vector3 targetAngle;
 
-    //Pull
-    public float pullForce = -5f;
 
     void Start()
     {
-        casket = GameObject.Find("Casket");
-        player2 = GameObject.Find("Player2");
-
-        casketBody = casket.GetComponent<Rigidbody>();
         rigidbody = GetComponent<Rigidbody>();
+        casketBody = casket.GetComponent<Rigidbody>();
     }
     
     private void Awake()
     {
+        casket = GameObject.FindGameObjectWithTag("Casket");
+        anchor = GameObject.FindGameObjectWithTag("Anchor");
         speed = walkSpeed;
     }
 
@@ -48,115 +47,41 @@ public class Player1 : MonoBehaviour
     void Update()
     {
 
-        //if(foundCas){
-        //    GetComponent<Rigidbody>().drag = 10;
-        //}
-        //else{
-        //    GetComponent<Rigidbody>().drag = 5;
-        //}
-
-        //if (Input.GetKey(KeyCode.UpArrow)){
-        //    if(foundCas){
-        //        lift = true;
-        //    }
-        //    GetComponent<Rigidbody>().AddForce(Vector3.forward * forceForward);
-        //    if(lift && player2.GetComponent<Player2>().lift){
-        //        Vector3 relativePos = transform.position - casket.transform.position;
-        //        casket.GetComponent<Rigidbody>().AddForce(relativePos);
-        //    }
-
         float inputX = Input.GetAxisRaw("Horizontal2");
         float inputY = Input.GetAxisRaw("Vertical2");
+
+        if (inputX == 1 || inputY == 1){
+            GetComponent<Animator>().enabled = true;
+            GameObject.Find("Player2").GetComponent<Animator>().enabled = true;
+        }
 
         Vector3 moveDir = new Vector3(inputX, 0, inputY).normalized;
         Vector3 targetMoveAmount = moveDir * speed;
         moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
 
-        // Check ground
+
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
         //}
-
-        //if (Input.GetKey(KeyCode.LeftArrow)){
-
-        //    GetComponent<Rigidbody>().AddForce(Vector3.left * forceHorizontal);
-        //    if(lift && player2.GetComponent<Player2>().lift){
-        //        Vector3 relativePos = transform.position - casket.transform.position;
-        //        casket.GetComponent<Rigidbody>().AddForce(relativePos/2);
-        //    }
-        //}
-        //if (Input.GetKey(KeyCode.RightArrow)){
-        //    GetComponent<Rigidbody>().AddForce(Vector3.right * forceHorizontal);
-        //    if(lift && player2.GetComponent<Player2>().lift){
-        //        Vector3 relativePos = transform.position - casket.transform.position;
-        //        casket.GetComponent<Rigidbody>().AddForce(relativePos/2);
-        //    }
-        //}
-        //if (Input.GetKey(KeyCode.DownArrow)){
-        //    GetComponent<Rigidbody>().AddForce(-Vector3.forward * forceForward);
-        //}
-
-        //if(Input.GetKeyUp(KeyCode.UpArrow)){
-        //    lift = false;
-        //}
-
-
-        if (foundCas){
-            GetComponent<Rigidbody>().drag = 10;
-        }
-        else{
-            GetComponent<Rigidbody>().drag = 5;
-        }
-
-        // if (Input.GetKey(KeyCode.UpArrow)){
-        //     if(foundCas){
-        //         lift = true;
-        //     }
-        //     GetComponent<Rigidbody>().AddForce(Vector3.forward * forceForward);
-        //     if(lift && player2.GetComponent<Player2>().lift){
-        //         Vector3 relativePos = transform.position - casket.transform.position;
-        //         casket.GetComponent<Rigidbody>().AddForce(relativePos);
-        //     }
-
-        // }
-
-        // if (Input.GetKey(KeyCode.LeftArrow)){
-
-        //     GetComponent<Rigidbody>().AddForce(Vector3.left * forceHorizontal);
-        //     if(lift && player2.GetComponent<Player2>().lift){
-        //         Vector3 relativePos = transform.position - casket.transform.position;
-        //         casket.GetComponent<Rigidbody>().AddForce(relativePos/2);
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.RightArrow)){
-        //     GetComponent<Rigidbody>().AddForce(Vector3.right * forceHorizontal);
-        //     if(lift && player2.GetComponent<Player2>().lift){
-        //         Vector3 relativePos = transform.position - casket.transform.position;
-        //         casket.GetComponent<Rigidbody>().AddForce(relativePos/2);
-        //     }
-        // }
-        // if (Input.GetKey(KeyCode.DownArrow)){
-        //     GetComponent<Rigidbody>().AddForce(-Vector3.forward * forceForward);
-        // }
-
-        // if(Input.GetKeyUp(KeyCode.UpArrow)){
-        //     lift = false;
-        // }
-
     }
 
-
-    public void AttractCasket()
+    private void FixedUpdate()
     {
-        Vector3 vectorTo = (casketBody.position - transform.position).normalized;
-        float casketDist = Vector3.Distance(casketBody.position, transform.position);
+        Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
+        rigidbody.MovePosition(rigidbody.position + localMove);
+        casket.GetComponent<Casket>().AttractCasket(rigidbody);
+        anchor.GetComponent<Anchor>().AttractAnchor(rigidbody);
 
-        if (Mathf.Abs(casketDist) < 5)
-        {
-            casketBody.AddForce(vectorTo * pullForce);
-        }
+
+        Quaternion h = Quaternion.FromToRotation(rigidbody.transform.forward, localMove) * rigidbody.rotation;
+        Vector3 direction = h.eulerAngles;
+        h.x = 0;
+        h.z = 0;
+
+        rigidbody.rotation = Quaternion.RotateTowards(rigidbody.rotation, h, 0.3f);
     }
+
 
     //void OnCollisionExit(Collision coll)
     //{
