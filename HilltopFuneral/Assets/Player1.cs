@@ -50,6 +50,11 @@ public class Player1 : MonoBehaviour
         float inputX = Input.GetAxisRaw("Horizontal2");
         float inputY = Input.GetAxisRaw("Vertical2");
 
+        if (inputX == 1 || inputY == 1){
+            GetComponent<Animator>().enabled = true;
+            GameObject.Find("Player2").GetComponent<Animator>().enabled = true;
+        }
+
         Vector3 moveDir = new Vector3(inputX, 0, inputY).normalized;
         Vector3 targetMoveAmount = moveDir * speed;
         moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
