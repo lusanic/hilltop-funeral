@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18827623, g: 0.19113824, b: 0.191098, a: 1}
+  m_IndirectSpecularColor: {r: 0.18827605, g: 0.1911383, b: 0.19109789, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -461,7 +461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &207257708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6417,7 +6417,7 @@ GameObject:
   - component: {fileID: 724782465}
   - component: {fileID: 724782464}
   - component: {fileID: 724782463}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9781,7 +9781,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2819613805246371202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10216,6 +10216,14 @@ PrefabInstance:
       propertyPath: player2
       value: 
       objectReference: {fileID: 7718877856460136271}
+    - target: {fileID: 4490272420054529899, guid: f1036bd669658f249a2322b39007c5da, type: 3}
+      propertyPath: terrain
+      value: 
+      objectReference: {fileID: 724782464}
+    - target: {fileID: 4490272420054529899, guid: f1036bd669658f249a2322b39007c5da, type: 3}
+      propertyPath: groundedMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1036bd669658f249a2322b39007c5da, type: 3}
 --- !u!1 &4492694594397570155

@@ -44,8 +44,6 @@ public class Casket : MonoBehaviour
         speed = walkSpeed;
     }
 
-
-    // Update is called once per frame
     void Update()
     {
         turnX = Input.GetAxisRaw("Horizontal");
@@ -55,11 +53,6 @@ public class Casket : MonoBehaviour
         Vector3 targetMoveAmount = moveDir * speed;
         moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
 
-        // RaycastHit hit;
-        // var ray = new Ray (transform.position, Vector3.down); // check for slopes
-        // if (terrain.GetComponent<Collider>().Raycast(ray, out hit, 1000)) {
-        //     transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal)*transform.rotation; // adjust for slopes
-        // }
     }
 
 
@@ -84,7 +77,6 @@ public class Casket : MonoBehaviour
         Quaternion h = Quaternion.FromToRotation(rigidbody.transform.forward, vectorTo) * rigidbody.rotation;
         Vector3 direction = h.eulerAngles;
         h.x = 0;
-        h.z = 0;
         rigidbody.rotation = Quaternion.RotateTowards(rigidbody.rotation, h, 10f);
     }
 

@@ -39,7 +39,7 @@ public class Player2 : MonoBehaviour
     public void AttractPlayer2(Rigidbody casket)
     {
         Vector3 pos = transform.position;
-        transform.position = Vector3.MoveTowards(pos, casket.transform.TransformPoint(0, -2f, 0.7f), pullForce * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(pos, casket.transform.TransformPoint(0, -2f, 1.0f), pullForce * Time.deltaTime);
 
 
 

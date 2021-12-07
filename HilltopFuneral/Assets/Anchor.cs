@@ -8,6 +8,8 @@ public class Anchor : MonoBehaviour
     public Rigidbody anchorrigidbody;
     public GameObject player2;
 
+    public Terrain terrain;
+
     // Movement
     Vector3 moveAmount;
     Vector3 smoothMoveVelocity;
@@ -15,6 +17,7 @@ public class Anchor : MonoBehaviour
     public float walkSpeed = 6;
     public float pushForce = 15;
     private float speed;
+    public LayerMask groundedMask;
 
     Vector3 Rotation;
     public float turnVertcial = 3f;
@@ -30,12 +33,17 @@ public class Anchor : MonoBehaviour
 
     //Pull
     public float pullForce = 1.0f;
+    public float groundUp = 5.0f;
+    private float gdistance = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
         anchorrigidbody = GetComponent<Rigidbody>();
         anchorrigidbody.centerOfMass = com;
+
+        float groundLevel = Terrain.activeTerrain.SampleHeight(anchorrigidbody.position);
+        gdistance = groundLevel;
     }
     private void Awake()
     {
@@ -43,22 +51,26 @@ public class Anchor : MonoBehaviour
     }
 
 
-    // Update is called once per frame
     void Update()
     {
-        //transform.position = anchorrigidbody.position;
+      
+
+
     }
 
 
     void FixedUpdate()
     {
-
+        float groundLevel = Terrain.activeTerrain.SampleHeight(anchorrigidbody.position);
+        gdistance = groundLevel;
     }
 
     public void AttractAnchor(Rigidbody player)
     {
         Vector3 pos = anchorrigidbody.transform.position;
-        anchorrigidbody.position = Vector3.MoveTowards(anchorrigidbody.position, player.transform.TransformPoint(0, 0.5f, -0.5f), pullForce * Time.deltaTime);
+        Vector3 posPlayer = player.transform.TransformPoint(0, 0.5f, -0.5f);
+        posPlayer.y = gdistance + groundUp;
+        anchorrigidbody.position = Vector3.MoveTowards(anchorrigidbody.position, posPlayer, pullForce * Time.deltaTime);
        
     }
 
