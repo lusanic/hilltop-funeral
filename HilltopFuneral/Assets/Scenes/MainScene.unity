@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.1882762, g: 0.19113812, b: 0.19109797, a: 1}
+  m_IndirectSpecularColor: {r: 0.18827605, g: 0.1911383, b: 0.19109789, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6087,7 +6087,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000001990702, y: 0.057154942, z: 0.00000004377216}
+  m_ConnectedAnchor: {x: 0.00000020640437, y: 0.057154946, z: 0.000000049360096}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -8856,7 +8856,7 @@ MonoBehaviour:
   torqueX: 20
   torqueY: 20
   pullForce: 5
-  groundUp: 5
+  groundUp: 6
 --- !u!65 &757636490
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22851,9 +22851,9 @@ ConfigurableJoint:
   m_XMotion: 0
   m_YMotion: 0
   m_ZMotion: 0
-  m_AngularXMotion: 2
-  m_AngularYMotion: 2
-  m_AngularZMotion: 2
+  m_AngularXMotion: 1
+  m_AngularYMotion: 1
+  m_AngularZMotion: 1
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -22865,22 +22865,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: 0
+    limit: -45
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 0
+    limit: 45
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 0
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -24022,7 +24022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2913486673880803982, guid: 57db9ae9191610342984c3fc9df26d32, type: 3}
       propertyPath: pullForce
-      value: 12
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2913486673880803983, guid: 57db9ae9191610342984c3fc9df26d32, type: 3}
       propertyPath: m_RootOrder
@@ -25028,6 +25028,7 @@ MonoBehaviour:
   foundCas: 0
   lift: 0
   pullForce: 10
+  smoothSpeed: 0.125
   thisrigidbody: {fileID: 0}
 --- !u!4 &7954817236803426824
 Transform:
