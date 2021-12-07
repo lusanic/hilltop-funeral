@@ -10,6 +10,8 @@ public class Player2 : MonoBehaviour
 
     public float pullForce = 10.0f;
 
+    public float smoothSpeed = 0.125f;
+
     // Body
     public Rigidbody thisrigidbody;
 
@@ -32,25 +34,21 @@ public class Player2 : MonoBehaviour
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
-        //transform.GetChild(0).transform.localPosition = new Vector3(0,0,0);
-
-        
-
     }
 
     public void AttractPlayer2(Rigidbody casket)
     {
-
-
-
         Vector3 pos = transform.position;
-        transform.position = Vector3.MoveTowards(pos, casket.transform.TransformPoint(0, -2f, 1.0f), pullForce * Time.deltaTime);
+        float groundLevel = Terrain.activeTerrain.SampleHeight(transform.position);
+        Vector3 posCasket = casket.transform.TransformPoint(0, -2f, 1.0f);
+        posCasket.y = groundLevel;
+
+        Vector3 desiredPos = posCasket;
+        Vector3 smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed);
+        transform.position = smoothedPos;
+        transform.LookAt(casket.position);
 
 
-
-        Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, casket.transform.eulerAngles.y-178.0f, transform.eulerAngles.z);
- 
-        transform.rotation = Quaternion.Euler(eulerRotation);
     }
 
 
