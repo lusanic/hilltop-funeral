@@ -41,18 +41,14 @@ public class Player2 : MonoBehaviour
     {
         Vector3 pos = transform.position;
         float groundLevel = Terrain.activeTerrain.SampleHeight(transform.position);
-        Vector3 posCasket = casket.transform.TransformPoint(0, -2f, 0.5f);
+        Vector3 posCasket = casket.transform.TransformPoint(0, -2f, 1.0f);
         posCasket.y = groundLevel;
 
-        Vector3 desiredPos = posCasket;
-        Vector3 smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed);
-        transform.position = smoothedPos;
+        transform.position = Vector3.MoveTowards(pos, posCasket, pullForce * Time.deltaTime);
 
-        Vector3 lookDirection = posCasket - transform.position;
-        lookDirection.Normalize();
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), smoothSpeedR * Time.deltaTime);
+        transform.LookAt(casket.position);
     }
+
 
 
     public Vector3 GetBehindPosition(Transform target, float distanceBehind, float distanceAbove)
