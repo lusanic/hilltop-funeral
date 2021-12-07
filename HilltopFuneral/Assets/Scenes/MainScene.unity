@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18827605, g: 0.1911383, b: 0.19109789, a: 1}
+  m_IndirectSpecularColor: {r: 0.1882762, g: 0.19113812, b: 0.19109797, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6087,7 +6087,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000020640437, y: 0.057154946, z: 0.000000049360096}
+  m_ConnectedAnchor: {x: 0.0000001990702, y: 0.057154942, z: 0.00000004377216}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -17561,7 +17561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sharedProfile: {fileID: 11400000, guid: 1ad1c8dcb129d2546bf27312e16ead6c, type: 2}
   isGlobal: 1
-  blendDistance: 0
+  blendDistance: 10
   weight: 1
   priority: 0
 --- !u!4 &1632332875
@@ -20439,6 +20439,8 @@ MonoBehaviour:
   foundCas: 0
   lift: 0
   pullForce: 12
+  smoothSpeed: 0.125
+  smoothSpeedR: 2
   thisrigidbody: {fileID: 0}
 --- !u!4 &1862636505
 Transform:
@@ -25029,6 +25031,7 @@ MonoBehaviour:
   lift: 0
   pullForce: 10
   smoothSpeed: 0.125
+  smoothSpeedR: 2
   thisrigidbody: {fileID: 0}
 --- !u!4 &7954817236803426824
 Transform:
