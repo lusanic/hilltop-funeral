@@ -32,6 +32,8 @@ public class Player2 : MonoBehaviour
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
+        //transform.GetChild(0).transform.localPosition = new Vector3(0,0,0);
+
         
 
     }
