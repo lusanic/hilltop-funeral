@@ -55,6 +55,11 @@ public class Player1 : MonoBehaviour
             GameObject.Find("Player2").GetComponent<Animator>().enabled = true;
         }
 
+        else{
+            GetComponent<Animator>().enabled = false;
+            GameObject.Find("Player2").GetComponent<Animator>().enabled = false;
+        }
+
         Vector3 moveDir = new Vector3(inputX, 0, inputY).normalized;
         Vector3 targetMoveAmount = moveDir * speed;
         moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
