@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public GameObject casket;
     public GameObject deadBody;
 
+    public int health = 2;
+
     // Start is called before the first frame update
     void Start()
     {
