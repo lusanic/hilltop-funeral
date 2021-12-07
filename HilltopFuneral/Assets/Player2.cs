@@ -32,12 +32,17 @@ public class Player2 : MonoBehaviour
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
+        //transform.GetChild(0).transform.localPosition = new Vector3(0,0,0);
+
         
 
     }
 
     public void AttractPlayer2(Rigidbody casket)
     {
+
+
+
         Vector3 pos = transform.position;
         transform.position = Vector3.MoveTowards(pos, casket.transform.TransformPoint(0, -2f, 1.0f), pullForce * Time.deltaTime);
 
@@ -48,6 +53,11 @@ public class Player2 : MonoBehaviour
         transform.rotation = Quaternion.Euler(eulerRotation);
     }
 
+
+    public Vector3 GetBehindPosition(Transform target, float distanceBehind, float distanceAbove)
+    {
+        return target.position - (target.forward * distanceBehind) + (target.up * distanceAbove);
+    }
 
     private void FixedUpdate()
     {

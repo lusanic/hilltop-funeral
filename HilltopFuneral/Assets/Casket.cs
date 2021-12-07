@@ -48,6 +48,7 @@ public class Casket : MonoBehaviour
     {
         turnX = Input.GetAxisRaw("Horizontal");
         turnY = Input.GetAxisRaw("Vertical");
+        Debug.Log(transform.eulerAngles.z);
 
         Vector3 moveDir = new Vector3(turnX, 0, turnY).normalized;
         Vector3 targetMoveAmount = moveDir * speed;
@@ -58,7 +59,7 @@ public class Casket : MonoBehaviour
 
     void FixedUpdate()
     {
-        player2.GetComponent<Player2>().AttractPlayer2(rigidbody);
+        player2.transform.parent.gameObject.GetComponent<Player2>().AttractPlayer2(rigidbody);
         Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
         rigidbody.AddTorque(transform.forward * torqueX * turnX);
         rigidbody.AddTorque(-transform.right * torqueY * turnY);
