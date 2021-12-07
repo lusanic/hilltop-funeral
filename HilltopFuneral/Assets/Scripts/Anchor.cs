@@ -33,7 +33,7 @@ public class Anchor : MonoBehaviour
 
     //Pull
     public float pullForce = 1.0f;
-    public float groundUp = 5.0f;
+    public float groundUp = 7.0f;
     private float gdistance = 0f;
 
     // Start is called before the first frame update

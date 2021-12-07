@@ -11,6 +11,7 @@ public class Player2 : MonoBehaviour
     public float pullForce = 10.0f;
 
     public float smoothSpeed = 0.125f;
+    public float smoothSpeedR = 2f;
 
     // Body
     public Rigidbody thisrigidbody;
@@ -40,15 +41,17 @@ public class Player2 : MonoBehaviour
     {
         Vector3 pos = transform.position;
         float groundLevel = Terrain.activeTerrain.SampleHeight(transform.position);
-        Vector3 posCasket = casket.transform.TransformPoint(0, -2f, 1.0f);
+        Vector3 posCasket = casket.transform.TransformPoint(0, -2f, 0.5f);
         posCasket.y = groundLevel;
 
         Vector3 desiredPos = posCasket;
         Vector3 smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed);
         transform.position = smoothedPos;
-        transform.LookAt(casket.position);
 
+        Vector3 lookDirection = posCasket - transform.position;
+        lookDirection.Normalize();
 
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), smoothSpeedR * Time.deltaTime);
     }
 
 
@@ -59,7 +62,7 @@ public class Player2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-       
+
     }
 
     //void OnCollisionEnter(Collision coll){
