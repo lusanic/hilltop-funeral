@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject casket;
     public GameObject deadBody;
+    public GameObject anchor;
 
     public int level = 1;
 
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
     public Vector3 p2Pos;
     public Vector3 casPos;
     public Vector3 bodyPos;
+    public Vector3 anchorPos;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +47,8 @@ public class GameManager : MonoBehaviour
         p1Pos = player1.transform.position;
         p2Pos = player2.transform.position;
         casPos = casket.transform.position;
-        bodyPos = deadBody.transform.GetChild(1).gameObject.transform.position;
+        anchorPos = anchor.transform.position;
+        bodyPos = deadBody.transform.GetChild(1).position;
     }
 
     // Update is called once per frame
@@ -60,7 +63,7 @@ public class GameManager : MonoBehaviour
         GameState.life = GameState.life-1;
         player1.transform.LookAt(deadBody.transform);
         player2.transform.LookAt(deadBody.transform);
-        disableCasket();
+        //disableCasket();
         disablePlayer1();
         disablePlayer2();
         disableBody();
@@ -110,15 +113,15 @@ public class GameManager : MonoBehaviour
     public void disableCasket(){
         casket.GetComponent<Casket>().enabled = false;
         casket.GetComponent<Rigidbody>().isKinematic = true;
-        casket.transform.GetChild(0).gameObject.GetComponent<Anchor>().enabled = false;
-        casket.transform.GetChild(0).gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        anchor.GetComponent<Anchor>().enabled = false;
+        anchor.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     public void enableCasket(){
         casket.GetComponent<Casket>().enabled = true;
         casket.GetComponent<Rigidbody>().isKinematic = false;
-        casket.transform.GetChild(0).gameObject.GetComponent<Anchor>().enabled = true;
-        casket.transform.GetChild(0).gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        anchor.GetComponent<Anchor>().enabled = true;
+        anchor.GetComponent<Rigidbody>().isKinematic = false;
     }
 
     public void disableBody(){
@@ -150,8 +153,8 @@ public class GameManager : MonoBehaviour
     }
 
     public IEnumerator deathReset(){
-        yield return new WaitForSeconds(1.0f);
         deathCanvas.SetActive(true);
+        casket.GetComponent<Rigidbody>().isKinematic = true;
         yield return new WaitForSeconds(2.0f);
 
         p1dialogue.GetComponent<TextMesh>().text = "";
@@ -167,24 +170,37 @@ public class GameManager : MonoBehaviour
         casket.transform.position = casPos;
         casket.transform.rotation = Quaternion.Euler(0, 268, 0);
 
+        anchor.transform.position = anchorPos;
+        anchor.transform.rotation = Quaternion.Euler(0, 90, 0);
+
         deadBody.transform.GetChild(1).gameObject.transform.position = bodyPos;
         deadBody.transform.GetChild(1).localRotation = Quaternion.Euler(0, 0, 0);
+        deadBody.transform.GetChild(1).gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        resetBodyRotation();
         //reset Player 1 rotation
-        
-        
-        
-        yield return new WaitForSeconds(1.0f);
-        
-        player1.GetComponent<Player1>().enabled = true;
-        player2.GetComponent<Player2>().enabled = true;
-        enableCasket();
 
-        
-
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         deathCanvas.GetComponent<Animator>().Play("DeathResetFadeOut");
+        
+        
         deadBody.transform.GetChild(1).gameObject.GetComponent<Collider>().enabled = true;
         deadBody.transform.GetChild(1).gameObject.GetComponent<Deadbody>().enabled = true;
+        //enableCasket();
+        player1.GetComponent<Player1>().enabled = true;
+        player2.GetComponent<Player2>().enabled = true;
+        
+        yield return new WaitForSeconds(0.5f);
+        casket.GetComponent<Rigidbody>().isKinematic = false;
+        deadBody.transform.GetChild(1).gameObject.GetComponent<Rigidbody>().isKinematic = false;
+    }
+
+
+    public void resetBodyRotation(){
+        foreach(Transform child in deadBody.transform.GetChild(1)){
+            if(child.gameObject.GetComponent<Collider>()!=null){
+                child.localRotation = Quaternion.Euler(0, 0, child.eulerAngles.z);
+            }
+        }
     }
     
 
