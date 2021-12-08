@@ -7,8 +7,8 @@ public class Anchor : MonoBehaviour
 
     public Rigidbody anchorrigidbody;
     public GameObject player2;
-
     public Terrain terrain;
+    public GameObject anchorDirection;
 
     // Movement
     Vector3 moveAmount;
@@ -41,6 +41,7 @@ public class Anchor : MonoBehaviour
     {
         anchorrigidbody = GetComponent<Rigidbody>();
         anchorrigidbody.centerOfMass = com;
+        anchorDirection = GameObject.FindGameObjectWithTag("AnchorDirection");
 
         float groundLevel = Terrain.activeTerrain.SampleHeight(anchorrigidbody.position);
         gdistance = groundLevel;
@@ -61,6 +62,12 @@ public class Anchor : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Vector3 d2p = anchorDirection.GetComponent<AnchorDirection>().getDirectionToPlayer1();
+
+        //Quaternion h = Quaternion.FromToRotation(transform.forward, d2p) * transform.rotation;
+
+        //transform.rotation = Quaternion.RotateTowards(transform.rotation, h, 1f);
+
         float groundLevel = Terrain.activeTerrain.SampleHeight(anchorrigidbody.position);
         gdistance = groundLevel;
     }

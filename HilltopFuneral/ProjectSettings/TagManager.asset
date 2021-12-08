@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Casket
   - Anchor
+  - AnchorDirection
   layers:
   - Default
   - TransparentFX

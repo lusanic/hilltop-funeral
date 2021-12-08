@@ -36,7 +36,6 @@ public class Casket : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        player2 = GameObject.Find("Player2");
         rigidbody.centerOfMass = com;
     }
     private void Awake()
@@ -59,7 +58,7 @@ public class Casket : MonoBehaviour
 
     void FixedUpdate()
     {
-        player2.transform.parent.gameObject.GetComponent<Player2>().AttractPlayer2(rigidbody);
+        //player2.transform.parent.gameObject.GetComponent<Player2>().AttractPlayer2(rigidbody);
         Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
         rigidbody.AddTorque(transform.forward * torqueX * turnX);
         rigidbody.AddTorque(-transform.right * torqueY * turnY);
@@ -78,6 +77,7 @@ public class Casket : MonoBehaviour
         Quaternion h = Quaternion.FromToRotation(rigidbody.transform.forward, vectorTo) * rigidbody.rotation;
         Vector3 direction = h.eulerAngles;
         h.x = 0;
+        h.z = 0;
         rigidbody.rotation = Quaternion.RotateTowards(rigidbody.rotation, h, 10f);
     }
 
