@@ -165,13 +165,13 @@ public class GameManager : MonoBehaviour
         player1.transform.rotation = Quaternion.Euler(0, 90, 0);
 
         player2.transform.position = p2Pos;
-        player2.transform.rotation = Quaternion.Euler(0, 0, 0);
+        player2.transform.rotation = Quaternion.Euler(0, 90, 0);
 
         casket.transform.position = casPos;
         casket.transform.rotation = Quaternion.Euler(0, 268, 0);
 
         anchor.transform.position = anchorPos;
-        anchor.transform.rotation = Quaternion.Euler(0, 90, 0);
+        anchor.transform.rotation = Quaternion.Euler(0, 180, 0);
 
         deadBody.transform.GetChild(1).gameObject.transform.position = bodyPos;
         deadBody.transform.GetChild(1).localRotation = Quaternion.Euler(0, 0, 0);
