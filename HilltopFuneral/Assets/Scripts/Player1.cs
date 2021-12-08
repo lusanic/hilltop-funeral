@@ -13,7 +13,7 @@ public class Player1 : MonoBehaviour
     public GameObject casket;
     public GameObject player2;
     public GameObject anchor;
-
+    public GameObject anchorDirection;
 
     // Body
     public Rigidbody rigidbody;
@@ -40,6 +40,7 @@ public class Player1 : MonoBehaviour
     {
         casket = GameObject.FindGameObjectWithTag("Casket");
         anchor = GameObject.FindGameObjectWithTag("Anchor");
+        anchorDirection = GameObject.FindGameObjectWithTag("AnchorDirection");
         speed = walkSpeed;
     }
 
@@ -77,13 +78,13 @@ public class Player1 : MonoBehaviour
         rigidbody.MovePosition(rigidbody.position + localMove);
         casket.GetComponent<Casket>().AttractCasket(rigidbody);
         anchor.GetComponent<Anchor>().AttractAnchor(rigidbody);
+        anchorDirection.GetComponent<AnchorDirection>().AttractAnchorDirection(rigidbody);
 
 
         Quaternion h = Quaternion.FromToRotation(rigidbody.transform.forward, localMove) * rigidbody.rotation;
         Vector3 direction = h.eulerAngles;
         h.x = 0;
         h.z = 0;
-
         rigidbody.rotation = Quaternion.RotateTowards(rigidbody.rotation, h, 0.3f);
     }
 

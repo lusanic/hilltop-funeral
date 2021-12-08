@@ -8,6 +8,8 @@ public class Player2 : MonoBehaviour
     public bool foundCas;
     public bool lift;
 
+    public GameObject anchorDirection;
+
     public float pullForce = 10.0f;
 
     public float smoothSpeed = 0.125f;
@@ -16,9 +18,11 @@ public class Player2 : MonoBehaviour
     // Body
     public Rigidbody thisrigidbody;
 
+
     // Start is called before the first frame update
     void Start()
     {
+        anchorDirection = GameObject.FindGameObjectWithTag("AnchorDirection");
         //forceForward = acceleration * GetComponent<Rigidbody>().mass; 
     }
 
@@ -35,6 +39,11 @@ public class Player2 : MonoBehaviour
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
+        //Vector3 pos = transform.position;
+        //float groundLevel = Terrain.activeTerrain.SampleHeight(transform.position);
+        //pos.y = groundLevel;
+        //transform.position = pos;
+
     }
 
     public void AttractPlayer2(Rigidbody casket)
@@ -45,7 +54,7 @@ public class Player2 : MonoBehaviour
         posCasket.y = groundLevel;
 
         transform.position = Vector3.MoveTowards(pos, posCasket, pullForce * Time.deltaTime);
-        Vector3 lookatPos = new Vector3(casket.position.x, casket.position.y-1.0f, casket.position.z);
+        Vector3 lookatPos = new Vector3(casket.position.x, casket.position.y - 1.0f, casket.position.z);
         transform.LookAt(lookatPos);
     }
 
