@@ -31,12 +31,21 @@ public class GameManager : MonoBehaviour
     public GameObject casket;
     public GameObject deadBody;
 
-    public int health = 2;
+    public int level = 1;
+
+    public Vector3 p1Pos;
+    public Vector3 p2Pos;
+    public Vector3 casPos;
+    public Vector3 bodyPos;
 
     // Start is called before the first frame update
     void Start()
     {
         date =  System.DateTime.Now.ToString("MM/dd");
+        p1Pos = player1.transform.position;
+        p2Pos = player2.transform.position;
+        casPos = casket.transform.position;
+        bodyPos = deadBody.transform.GetChild(1).gameObject.transform.position;
     }
 
     // Update is called once per frame
@@ -51,9 +60,9 @@ public class GameManager : MonoBehaviour
         GameState.life = GameState.life-1;
         player1.transform.LookAt(deadBody.transform);
         player2.transform.LookAt(deadBody.transform);
+        disableCasket();
         disablePlayer1();
         disablePlayer2();
-        disableCasket();
         disableBody();
         StartCoroutine(displayIngameDialogue());
 
@@ -144,20 +153,40 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         deathCanvas.SetActive(true);
         yield return new WaitForSeconds(2.0f);
+
+        p1dialogue.GetComponent<TextMesh>().text = "";
+        p2dialogue.GetComponent<TextMesh>().text = "";
+
+        //reset position of objects
+        player1.transform.position = p1Pos;
         player1.transform.rotation = Quaternion.Euler(0, 90, 0);
+
+        player2.transform.position = p2Pos;
+        player2.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        casket.transform.position = casPos;
+        casket.transform.rotation = Quaternion.Euler(0, 268, 0);
+
+        deadBody.transform.GetChild(1).gameObject.transform.position = bodyPos;
+        deadBody.transform.GetChild(1).localRotation = Quaternion.Euler(0, 0, 0);
+        //reset Player 1 rotation
+        
+        
+        
+        yield return new WaitForSeconds(1.0f);
+        
         player1.GetComponent<Player1>().enabled = true;
         player2.GetComponent<Player2>().enabled = true;
         enableCasket();
-        Vector3 newPos = new Vector3(casket.transform.position.x-1.0f, casket.transform.position.y+5.0f, casket.transform.position.z);
-        deadBody.transform.GetChild(1).gameObject.transform.position = newPos;
-        deadBody.transform.GetChild(1).localRotation = Quaternion.Euler(0, 0, 0);
-        p1dialogue.GetComponent<TextMesh>().text = "";
-        p2dialogue.GetComponent<TextMesh>().text = "";
+
+        
+
         yield return new WaitForSeconds(1.0f);
         deathCanvas.GetComponent<Animator>().Play("DeathResetFadeOut");
         deadBody.transform.GetChild(1).gameObject.GetComponent<Collider>().enabled = true;
         deadBody.transform.GetChild(1).gameObject.GetComponent<Deadbody>().enabled = true;
     }
+    
 
 
 }

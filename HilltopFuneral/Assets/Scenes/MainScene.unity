@@ -1784,7 +1784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &207257708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1945,7 +1945,7 @@ MonoBehaviour:
   nameLabel: {fileID: 2005682358}
   menuPage: {fileID: 21300000, guid: e99b1f8efdb2bc94ea32ea664174c6f8, type: 3}
   titlePage: {fileID: 21300000, guid: 82e2d334915c0a249b89d86efe3c446f, type: 3}
-  gameStart: 1
+  gameStart: 0
   beforeName: 0
   enterName: 0
   fileToRead: {fileID: 0}
@@ -2718,7 +2718,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Enter Text
 --- !u!222 &291305336
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5174,7 +5174,11 @@ MonoBehaviour:
   p2dialogue: {fileID: 1076974446}
   casket: {fileID: 2111533504}
   deadBody: {fileID: 1479592835}
-  health: 2
+  level: 1
+  p1Pos: {x: 0, y: 0, z: 0}
+  p2Pos: {x: 0, y: 0, z: 0}
+  casPos: {x: 0, y: 0, z: 0}
+  bodyPos: {x: 0, y: 0, z: 0}
 --- !u!114 &492733727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16921,7 +16925,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 4bfdb57981717d641807d9d8538d39b9, type: 3}
     m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0

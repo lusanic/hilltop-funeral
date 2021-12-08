@@ -20,15 +20,19 @@ public class IntroScene : MonoBehaviour
 
     public File fileToRead;
 
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         cutscene = GameObject.Find("Cutscene");
+        anim = cutscene.GetComponent<Animator>();
 
         cutSceneLabel = transform.GetChild(0).gameObject;
         fileToRead = new File("Assets/IntroDialogue.txt");
         fileToRead.storeLines();
-        StartCoroutine(displayLine());
+        //StartCoroutine(displayLine());
+        anim.Play("cutsceneStart");
     }
 
     // Update is called once per frame
@@ -38,8 +42,7 @@ public class IntroScene : MonoBehaviour
             if (Input.GetMouseButtonDown(0)){
                 string line = fileToRead.getNextLine();
                 if(line == ""){
-                    cutSceneFadeOut();
-                    StartCoroutine(cutSceneFadeIn(titlePage));
+                    anim.Play("cutsceneTitleTransition");
                     gameStart = false;
                 }
                 else{
@@ -49,14 +52,17 @@ public class IntroScene : MonoBehaviour
         }
 
         if(beforeName){
+            cutSceneLabel.GetComponent<Text>().text = "Bonko and Slappy started a new business and they already have their first customer!";
             if (Input.GetMouseButtonDown(0)){
-                StartCoroutine(triggerEnterName());
+                anim.Play("titleToCutscene");
+                beforeName = false;
+
 
             }
         }
 
-        if(enterName){
-            Debug.Log("at enter name");
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 
+            && anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == "titleToCutscene"){
             if(Input.GetMouseButtonDown(0)){
                 cutSceneLabel.SetActive(false);
                 nameInput.SetActive(true);
@@ -64,6 +70,7 @@ public class IntroScene : MonoBehaviour
                 enterName = false;
             }
         }
+
 
 
         
@@ -99,7 +106,7 @@ public class IntroScene : MonoBehaviour
 
     public IEnumerator triggerEnterName(){
         cutSceneImageFadeOut();
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         cutSceneLabel.GetComponent<Text>().text = "Bonko and Slappy started a new business and they already have their first customer!";
         cutscene.GetComponent<Image>().sprite = menuPage;
         StartCoroutine(displayLine());
