@@ -48,7 +48,7 @@ public class Casket : MonoBehaviour
     {
         turnX = Input.GetAxisRaw("Horizontal");
         turnY = Input.GetAxisRaw("Vertical");
-        Debug.Log(transform.eulerAngles.z);
+
 
         Vector3 moveDir = new Vector3(turnX, 0, turnY).normalized;
         Vector3 targetMoveAmount = moveDir * speed;

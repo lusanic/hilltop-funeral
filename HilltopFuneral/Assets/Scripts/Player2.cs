@@ -45,7 +45,7 @@ public class Player2 : MonoBehaviour
         posCasket.y = groundLevel;
 
         transform.position = Vector3.MoveTowards(pos, posCasket, pullForce * Time.deltaTime);
-        Vector3 lookatPos = new Vector3(casket.position.x, casket.position.y-1.0f, casket.position.z);
+        Vector3 lookatPos = new Vector3(casket.position.x, casket.position.y-1.5f, casket.position.z);
         transform.LookAt(lookatPos);
     }
 

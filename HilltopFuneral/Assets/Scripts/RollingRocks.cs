@@ -13,6 +13,6 @@ public class RollingRocks : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        GetComponent<Rigidbody>().AddForce(-transform.right * 1000f);
+        GetComponent<Rigidbody>().AddForce(-transform.right * 2000f);
     }
 }
