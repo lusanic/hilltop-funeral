@@ -21,7 +21,10 @@ public class PauseMenu : MonoBehaviour
                 Resume();
             }
             else{
-                Pause();
+                if(GameState.gameStarted){
+                    Pause();
+                }
+                
             }
         }
     }

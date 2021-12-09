@@ -113,11 +113,12 @@ public class Player1 : MonoBehaviour
     ////     }
     //// }
 
-    //void OnTriggerEnter(Collider coll){
-    //    if (coll.gameObject.tag == "Casket"){
-    //        foundCas = true;
-    //    }
-    //}
+    void OnTriggerEnter(Collider coll){
+       if (coll.gameObject.tag == "Level2"){
+           GameState.level = 2;
+           GameState.triggerCheckpoint = true;
+       }
+    }
 
     //void OnTriggerExit(Collider coll){
     //    if (coll.gameObject.tag == "Casket"){

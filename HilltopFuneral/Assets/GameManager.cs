@@ -12,6 +12,11 @@ public static class GameState
     public static string name;
     public static bool afterName = false;
 
+    public static int level = 1;
+    public static bool triggerCheckpoint = false;
+
+    public static bool gameStarted = false;
+
 
 }
 
@@ -152,6 +157,7 @@ public class GameManager : MonoBehaviour
         player2.SetActive(true);
         player1.SetActive(true);
         deadBody.SetActive(true);
+        GameState.gameStarted = true;
     }
 
     public void disablePlayer1(){
@@ -251,7 +257,7 @@ public class GameManager : MonoBehaviour
         player1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
         player1.GetComponent<Player1>().enabled = true;
         player2.GetComponent<Player2>().enabled = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         
         deadBody.transform.GetChild(1).gameObject.transform.position = new Vector3(casket.transform.position.x, casket.transform.position.y+2.0f, casket.transform.position.z);
         deadBody.transform.GetChild(1).localRotation = Quaternion.Euler(0, 0, 0);

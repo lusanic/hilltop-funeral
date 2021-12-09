@@ -8,6 +8,7 @@ TagManager:
   - Anchor
   - AnchorDirection
   - Player2
+  - Level2
   layers:
   - Default
   - TransparentFX
