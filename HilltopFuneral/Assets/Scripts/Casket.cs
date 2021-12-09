@@ -58,7 +58,7 @@ public class Casket : MonoBehaviour
 
     void FixedUpdate()
     {
-        //player2.transform.parent.gameObject.GetComponent<Player2>().AttractPlayer2(rigidbody);
+        
         Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
         rigidbody.AddTorque(transform.forward * torqueX * turnX);
         rigidbody.AddTorque(-transform.right * torqueY * turnY);

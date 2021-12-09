@@ -225,8 +225,8 @@ public class GameManager : MonoBehaviour
         deadBody.transform.GetChild(1).gameObject.GetComponent<Rigidbody>().isKinematic = true;
         resetBodyRotation();
         //reset Player 1 rotation
-        player2.transform.parent = player1.transform;
-        player2.transform.localPosition = new Vector3(0.4f, 0, -11);
+        //player2.transform.parent = player1.transform;
+        //player2.transform.localPosition = new Vector3(0.4f, 0, -11);
         yield return new WaitForSeconds(0.5f);
         deathCanvas.GetComponent<Animator>().Play("DeathResetFadeOut");
         droppedLabel.SetActive(true);
