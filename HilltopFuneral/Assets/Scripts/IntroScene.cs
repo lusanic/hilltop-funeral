@@ -29,7 +29,7 @@ public class IntroScene : MonoBehaviour
         anim = cutscene.GetComponent<Animator>();
 
         cutSceneLabel = transform.GetChild(0).gameObject;
-        fileToRead = new File("Assets/IntroDialogue.txt");
+        fileToRead = new File("Assets/TextFiles/IntroDialogue.txt");
         fileToRead.storeLines();
         //StartCoroutine(displayLine());
         anim.Play("cutsceneStart");
