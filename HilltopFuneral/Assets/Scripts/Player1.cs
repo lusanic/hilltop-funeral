@@ -41,7 +41,7 @@ public class Player1 : MonoBehaviour
         casket = GameObject.FindGameObjectWithTag("Casket");
         anchor = GameObject.FindGameObjectWithTag("Anchor");
         anchorDirection = GameObject.FindGameObjectWithTag("AnchorDirection");
-        player2 = GameObject.FindGameObjectWithTag("Player2");
+        //player2 = GameObject.FindGameObjectWithTag("Player2");
 
         speed = walkSpeed;
     }
@@ -53,7 +53,7 @@ public class Player1 : MonoBehaviour
         float inputX = Input.GetAxisRaw("Horizontal2");
         float inputY = Input.GetAxisRaw("Vertical2");
 
-        if (inputX == 1 || inputY == 1){
+        if ((inputX == 1 || inputY == 1)&&Time.timeScale == 1f){
             GetComponent<Animator>().enabled = true;
             GameObject.Find("Player2").GetComponent<Animator>().enabled = true;
             GetComponent<AudioSource>().enabled = true;

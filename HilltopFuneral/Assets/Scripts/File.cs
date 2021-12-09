@@ -35,4 +35,8 @@ public class File : MonoBehaviour
         return line;
         
     }
+
+    public int getLineIndex(){
+        return (index-1);
+    }
 }

@@ -17,6 +17,7 @@ public class IntroScene : MonoBehaviour
     public bool gameStart = true;
     public bool beforeName = false;
     public bool enterName = false;
+    public bool afterName = false;
 
     public File fileToRead;
 
@@ -68,6 +69,34 @@ public class IntroScene : MonoBehaviour
                 nameInput.SetActive(true);
                 nameLabel.SetActive(true);
                 enterName = false;
+            }
+        }
+        
+
+        if(GameState.afterName){
+            if(Input.GetMouseButtonDown(0)){
+                transform.GetChild(3).gameObject.SetActive(false);
+                cutSceneLabel.SetActive(true);
+                fileToRead = new File("Assets/TextFiles/IntroEnd.txt");
+                fileToRead.storeLines();
+                GameState.afterName = false;
+                afterName = true;
+            }
+        }
+
+        if(afterName){
+            if (Input.GetMouseButtonDown(0)){
+                string line = fileToRead.getNextLine();
+                if(line == ""){
+                    anim.Play("cutsceneEnd");
+                    gameStart = false;
+                }
+                else{
+                    if(fileToRead.getLineIndex()== 0){
+                        line = "Bonko and Slappy had prepared a lovely ceremony for "+GameState.name+" atop a beautiful hill.";
+                    }
+                    cutSceneLabel.GetComponent<Text>().text = line;
+                } 
             }
         }
 

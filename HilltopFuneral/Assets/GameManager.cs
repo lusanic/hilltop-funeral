@@ -9,6 +9,9 @@ public static class GameState
     public static int dropped = 0;
     public static bool onGround = false;
 
+    public static string name;
+    public static bool afterName = false;
+
 
 }
 
@@ -72,6 +75,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+
+
+
         droppedLabel.GetComponent<Text>().text = "Dropped: "+GameState.dropped;
 
         if(GameState.onGround){
@@ -113,6 +121,7 @@ public class GameManager : MonoBehaviour
     public void inputName(string input){
         name = input;
         Debug.Log(name);
+        GameState.name = input;
     }
 
     public void updateDate(GameObject obj){
@@ -125,7 +134,9 @@ public class GameManager : MonoBehaviour
         string deathLabel = "On " + date +",\n\n"+ name + " has died.\n\n Cause of Death: "+deathCauses[causeIndex]+" "+deathItems[itemIndex]+"."; 
 
         obj.GetComponent<Text>().text = deathLabel;
-        startButton.SetActive(true);
+        GameState.afterName = true;
+        
+        //startButton.SetActive(true);
     }
 
     public void startGame(){
@@ -138,8 +149,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         canvas.SetActive(false);
         casket.SetActive(true);
-        player1.SetActive(true);
         player2.SetActive(true);
+        player1.SetActive(true);
         deadBody.SetActive(true);
     }
 
@@ -198,7 +209,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator deathReset(){
         deathCanvas.SetActive(true);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1f);
         deathCanvas.GetComponent<Animator>().Play("DeathResetFadeIn");
         yield return new WaitForSeconds(2.0f);
 
@@ -237,16 +248,19 @@ public class GameManager : MonoBehaviour
         deadBody.transform.GetChild(1).gameObject.GetComponent<Collider>().enabled = true;
         deadBody.transform.GetChild(1).gameObject.GetComponent<Deadbody>().enabled = true;
         //enableCasket();
+        player1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
         player1.GetComponent<Player1>().enabled = true;
         player2.GetComponent<Player2>().enabled = true;
         yield return new WaitForSeconds(0.5f);
-        deathCanvas.GetComponent<Animator>().Play("DeathResetFadeOut");
+        
         deadBody.transform.GetChild(1).gameObject.transform.position = new Vector3(casket.transform.position.x, casket.transform.position.y+2.0f, casket.transform.position.z);
         deadBody.transform.GetChild(1).localRotation = Quaternion.Euler(0, 0, 0);
         
         yield return new WaitForSeconds(0.5f);
-        
+        deathCanvas.GetComponent<Animator>().Play("DeathResetFadeOut");
         deadBody.transform.GetChild(1).gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        yield return new WaitForSeconds(0.1f);
+        player1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         
     }
 
