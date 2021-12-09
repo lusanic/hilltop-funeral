@@ -63,7 +63,7 @@ public class IntroScene : MonoBehaviour
 
         if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 
             && anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == "titleToCutscene"){
-            if(Input.GetMouseButtonDown(0)){
+            if(Input.GetMouseButtonDown(0) && enterName){
                 cutSceneLabel.SetActive(false);
                 nameInput.SetActive(true);
                 nameLabel.SetActive(true);

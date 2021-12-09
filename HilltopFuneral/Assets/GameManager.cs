@@ -128,10 +128,14 @@ public class GameManager : MonoBehaviour
         startButton.SetActive(true);
     }
 
-    public void startGame(GameObject obj){
-        startButton.SetActive(false);
-        obj.SetActive(false);
+    public void startGame(){
+        StartCoroutine(fadeCutscene());
 
+    }
+
+    public IEnumerator fadeCutscene(){
+        canvas.GetComponent<Animator>().Play("cutsceneOver");
+        yield return new WaitForSeconds(3.0f);
         canvas.SetActive(false);
         casket.SetActive(true);
         player1.SetActive(true);
