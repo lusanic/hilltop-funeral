@@ -41,6 +41,8 @@ public class Player1 : MonoBehaviour
         casket = GameObject.FindGameObjectWithTag("Casket");
         anchor = GameObject.FindGameObjectWithTag("Anchor");
         anchorDirection = GameObject.FindGameObjectWithTag("AnchorDirection");
+        player2 = GameObject.FindGameObjectWithTag("Player2");
+
         speed = walkSpeed;
     }
 
@@ -79,7 +81,7 @@ public class Player1 : MonoBehaviour
         casket.GetComponent<Casket>().AttractCasket(rigidbody);
         anchor.GetComponent<Anchor>().AttractAnchor(rigidbody);
         anchorDirection.GetComponent<AnchorDirection>().AttractAnchorDirection(rigidbody);
-
+        //player2.GetComponent<Player2>().AttractPlayer2(rigidbody);
 
         Quaternion h = Quaternion.FromToRotation(rigidbody.transform.forward, localMove) * rigidbody.rotation;
         Vector3 direction = h.eulerAngles;

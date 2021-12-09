@@ -35,25 +35,27 @@ public class Player2 : MonoBehaviour
     void Update()
     {
 
-        // Check if on ground
-        Ray ray = new Ray(transform.position, -transform.up);
-        RaycastHit hit;
-
-        //Vector3 pos = transform.position;
-        //float groundLevel = Terrain.activeTerrain.SampleHeight(transform.position);
-        //pos.y = groundLevel;
-        //transform.position = pos;
-
     }
+
+    private void FixedUpdate()
+    {
+        Vector3 pos = transform.position;
+        float groundLevel = Terrain.activeTerrain.SampleHeight(pos);
+
+        pos.y = groundLevel;
+        transform.position = pos;
+    }
+
 
     public void AttractPlayer2(Rigidbody casket)
     {
-        Vector3 pos = transform.position;
+        //Vector3 pos = transform.position;
         float groundLevel = Terrain.activeTerrain.SampleHeight(transform.position);
-        Vector3 posCasket = casket.transform.TransformPoint(0, -2f, 1.0f);
+        Vector3 posCasket = casket.transform.TransformPoint(0, 0, 1.0f);
         posCasket.y = groundLevel;
 
-        transform.position = Vector3.MoveTowards(pos, posCasket, pullForce * Time.deltaTime);
+        transform.position = posCasket;//Vector3.MoveTowards(pos, posCasket, pullForce * Time.deltaTime);
+
         Vector3 lookatPos = new Vector3(casket.position.x, casket.position.y - 1.0f, casket.position.z);
         transform.LookAt(lookatPos);
     }
@@ -65,10 +67,7 @@ public class Player2 : MonoBehaviour
         return target.position - (target.forward * distanceBehind) + (target.up * distanceAbove);
     }
 
-    private void FixedUpdate()
-    {
 
-    }
 
     //void OnCollisionEnter(Collision coll){
     //    if (coll.gameObject.name == "Casket"){
