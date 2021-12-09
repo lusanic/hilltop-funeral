@@ -146,6 +146,7 @@ public class GameManager : MonoBehaviour
     public void disablePlayer1(){
         player1.GetComponent<Player1>().enabled = false;
         player1.GetComponent<Animator>().enabled = false;
+        player1.GetComponent<AudioSource>().enabled = false;
     }
 
     public void disablePlayer2(){
@@ -216,9 +217,9 @@ public class GameManager : MonoBehaviour
 
         anchor.transform.position = anchorPos;
         anchor.transform.rotation = Quaternion.Euler(0, 180, 0);
+        casket.GetComponent<Rigidbody>().isKinematic = false;
 
-        deadBody.transform.GetChild(1).gameObject.transform.position = bodyPos;
-        deadBody.transform.GetChild(1).localRotation = Quaternion.Euler(0, 0, 0);
+
 
 
 
@@ -228,7 +229,9 @@ public class GameManager : MonoBehaviour
         //player2.transform.parent = player1.transform;
         //player2.transform.localPosition = new Vector3(0.4f, 0, -11);
         yield return new WaitForSeconds(0.5f);
-        deathCanvas.GetComponent<Animator>().Play("DeathResetFadeOut");
+
+
+        
         droppedLabel.SetActive(true);
         
         deadBody.transform.GetChild(1).gameObject.GetComponent<Collider>().enabled = true;
@@ -236,11 +239,15 @@ public class GameManager : MonoBehaviour
         //enableCasket();
         player1.GetComponent<Player1>().enabled = true;
         player2.GetComponent<Player2>().enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        deathCanvas.GetComponent<Animator>().Play("DeathResetFadeOut");
+        deadBody.transform.GetChild(1).gameObject.transform.position = new Vector3(casket.transform.position.x, casket.transform.position.y+2.0f, casket.transform.position.z);
+        deadBody.transform.GetChild(1).localRotation = Quaternion.Euler(0, 0, 0);
         
         yield return new WaitForSeconds(0.5f);
         
         deadBody.transform.GetChild(1).gameObject.GetComponent<Rigidbody>().isKinematic = false;
-        casket.GetComponent<Rigidbody>().isKinematic = false;
+        
     }
 
 

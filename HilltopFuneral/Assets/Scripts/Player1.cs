@@ -56,11 +56,13 @@ public class Player1 : MonoBehaviour
         if (inputX == 1 || inputY == 1){
             GetComponent<Animator>().enabled = true;
             GameObject.Find("Player2").GetComponent<Animator>().enabled = true;
+            GetComponent<AudioSource>().enabled = true;
         }
 
         else{
             GetComponent<Animator>().enabled = false;
             GameObject.Find("Player2").GetComponent<Animator>().enabled = false;
+            GetComponent<AudioSource>().enabled = false;
         }
 
         Vector3 moveDir = new Vector3(inputX, 0, inputY).normalized;
