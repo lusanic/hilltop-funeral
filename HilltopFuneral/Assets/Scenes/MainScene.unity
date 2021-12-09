@@ -4706,7 +4706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &207257708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9611,12 +9611,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437674859}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 10.84, y: 40.28423, z: 505.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &437761328 stripped
 GameObject:
@@ -12343,7 +12343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f075adaf248b865479dc59625b015877, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1951115741138418305, guid: f075adaf248b865479dc59625b015877, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16256,7 +16256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &754878096
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16423,7 +16423,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &758331396
 PrefabInstance:
@@ -34097,7 +34097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9018f92bc52076f4f8287bd58ec0f70a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3041264780637300939, guid: 9018f92bc52076f4f8287bd58ec0f70a, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -34249,7 +34249,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!54 &1580881363
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34265,7 +34265,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!136 &1580881364
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -34341,7 +34341,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!136 &1580881367
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -34417,7 +34417,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!135 &1580881370
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -34492,7 +34492,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!54 &1580881373
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34508,7 +34508,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!136 &1580881374
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -34595,7 +34595,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000002051818, y: 0.36514437, z: -0.021316383}
+  m_ConnectedAnchor: {x: 0.0000020518144, y: 0.36514342, z: -0.021316383}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -34644,7 +34644,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!65 &1580881379
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34719,7 +34719,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!54 &1580881382
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34735,7 +34735,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!136 &1580881383
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -34871,7 +34871,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!54 &1580881388
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34887,7 +34887,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!136 &1580881389
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -47462,7 +47462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!153 &2111533505
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -47567,14 +47567,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111533504}
   serializedVersion: 2
-  m_Mass: 15
+  m_Mass: 10
   m_Drag: 1
   m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &2111533507
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ public class Deadbody : MonoBehaviour
 
 
     public void OnCollisionEnter(Collision coll){
-        if(coll.gameObject.name == "Terrain"){
+        if(coll.gameObject.name.Contains("Terrain")){
             GameState.onGround = true;
             
         }
