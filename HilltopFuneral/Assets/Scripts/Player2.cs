@@ -39,19 +39,20 @@ public class Player2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 pos = transform.position;
-        float groundLevel = Terrain.activeTerrain.SampleHeight(pos);
+        //Vector3 pos = transform.position;
+        //float groundLevel = Terrain.activeTerrain.SampleHeight(pos);
 
-        pos.y = groundLevel;
-        transform.position = pos;
+        //pos.y = groundLevel;
+        //transform.position = pos;
     }
 
 
     public void AttractPlayer2(Rigidbody casket)
     {
-        //Vector3 pos = transform.position;
-        float groundLevel = Terrain.activeTerrain.SampleHeight(transform.position);
-        Vector3 posCasket = casket.transform.TransformPoint(0, 0, 1.0f);
+        Vector3 pos = transform.position;
+        float groundLevel = Terrain.activeTerrain.SampleHeight(pos);
+
+        Vector3 posCasket = casket.transform.TransformPoint(0, 0, -10.0f);
         posCasket.y = groundLevel;
 
         transform.position = posCasket;//Vector3.MoveTowards(pos, posCasket, pullForce * Time.deltaTime);
